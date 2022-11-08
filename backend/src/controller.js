@@ -9,6 +9,7 @@ exports.index = function (req, res) {
                 status: "error",
                 message: err,
             });
+            return;
         }
         res.json({
             status: "success",
@@ -27,20 +28,31 @@ exports.new = function (req, res) {
 // save the player and check for errors
     player.save(function (err) {
         // Check for validation error
-        if (err)
-            res.json(err);
-        else
+        if (err) {
             res.json({
-                message: 'New player created!',
-                data: player
+                status: "error",
+                message: err,
             });
+            return;
+        }
+        
+        res.json({
+            message: 'New player created!',
+            data: player
+        });
     });
 };
 // Handle view player info
 exports.view = function (req, res) {
     Player.findById(req.params.player_id, function (err, player) {
-        if (err)
-            res.send(err);
+        if (err) {
+            res.json({
+                status: "error",
+                message: err,
+            });
+            return;
+        }
+        
         res.json({
             message: 'Player details loading..',
             data: player
@@ -50,16 +62,23 @@ exports.view = function (req, res) {
 // Handle update player info
 exports.update = function (req, res) {
     Player.findById(req.params.player_id, function (err, player) {
-        if (err)
-            res.send(err);
+        if (err) {
+            res.json({
+                status: "error",
+                message: err,
+            });
+            return;
+        }
         player.name = req.body.name ? req.body.name : player.name;
         player.gender = req.body.gender;
         player.email = req.body.email;
         player.phone = req.body.phone;
 // save the player and check for errors
         player.save(function (err) {
-            if (err)
+            if (err) {
                 res.json(err);
+                return;                
+            }
             res.json({
                 message: 'Player Info updated',
                 data: player
@@ -72,8 +91,13 @@ exports.delete = function (req, res) {
     Player.remove({
         _id: req.params.player_id
     }, function (err, player) {
-        if (err)
-            res.send(err);
+        if (err) {
+            res.json({
+                status: "error",
+                message: err,
+            });
+            return;
+        }
         res.json({
             status: "success",
             message: 'Player deleted'

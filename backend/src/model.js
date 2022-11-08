@@ -18,7 +18,7 @@ var playerSchema = mongoose.Schema({
     }
 });
 // Export Player model
-var Player = module.exports = mongoose.model('contact', playerSchema);
+var Player = module.exports = mongoose.model('player', playerSchema);
 module.exports.get = function (callback, limit) {
-    Contact.find(callback).limit(limit);
+    Player.find(callback).limit(limit);
 }
