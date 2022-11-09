@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 // Connect to Mongoose and set connection variable
-mongoose.connect('mongodb://localhost/27017', { useNewUrlParser: true});
+mongoose.connect('mongodb://localhost/hangman', { useNewUrlParser: true});
 var db = mongoose.connection;
 
 // Added check for DB connection
@@ -27,12 +27,13 @@ else
 // Setup server port
 var port = process.env.PORT || 8080;
 
-// Send message for default URL
-app.get('/', (req, res) => res.send('Hello World with Express'));
-
 // Use Api routes in the App
-app.use('/api', apiRoutes);
+app.use('/', apiRoutes);
 // Launch app to listen to specified port
 app.listen(port, function () {
     console.log("Running RestHub on port " + port);
 });
+
+module.exports = {
+    app
+};

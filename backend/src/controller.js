@@ -69,11 +69,12 @@ exports.update = function (req, res) {
             });
             return;
         }
-        player.name = req.body.name ? req.body.name : player.name;
+        console.log(req.body.name ? req.body.name : player.name);
+        // player.name = req.body.name ? req.body.name : player.name;
         player.gender = req.body.gender;
         player.email = req.body.email;
         player.phone = req.body.phone;
-// save the player and check for errors
+        // save the player and check for errors
         player.save(function (err) {
             if (err) {
                 res.json(err);
