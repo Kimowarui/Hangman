@@ -1,6 +1,6 @@
 // controller.js
 // Import player model
-Player = require('./model');
+const Player = require('./model');
 // Handle index actions
 exports.index = function (req, res) {
     Player.get(function (err, players) {
