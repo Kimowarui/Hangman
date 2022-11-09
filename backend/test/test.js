@@ -11,6 +11,7 @@ chai.should();
 
 describe("Players API", () => {
   describe("GET /players", () => { 
+    const id = setUpDummyData();
     it("should get all players record", done => {
       chai.request(app)
         .get('/players')
