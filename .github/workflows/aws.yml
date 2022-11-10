@@ -44,7 +44,7 @@ jobs:
       with:
         aws_access_key: ${{secrets.AWS_ACCESS_KEY}}
         aws_secret_key: ${{secrets.AWS_SECRET_KEY}}
-        application_name: "hang"
+        application_name: "hangman"
         environment_name: "Hangman-env"
         region: "ap-northeast-1"
         version_label: "hangman-new-${{ steps.format-time.outputs.replaced }}"
