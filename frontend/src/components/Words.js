@@ -1,23 +1,14 @@
-var programming_languages = [
-	"python",
-	"javascript",
-	"mongodb",
-	"json",
-	"java",
-	"html",
-	"css",
-  "c",
-	"csharp",
-	"golang",
-	"kotlin",
-	"php",
-	"sql",
-  "ruby",
-  "fortran"
-]
+const axios = require('axios').default;
+const WORD_LIST_API = "https://9lle070ysl.execute-api.ap-northeast-1.amazonaws.com";
+const GETWORD = "/api/words";
 
-function randomWord() {
-  return programming_languages[Math.floor(Math.random() * programming_languages.length)]
+async function randomWord() {
+  try {
+		const res = await axios.get(WORD_LIST_API+GETWORD);
+		return res.data.word;
+	} catch (err) {
+		console.error(err);
+	}
 }
 
 export { randomWord }
