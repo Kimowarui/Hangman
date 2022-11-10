@@ -48,7 +48,7 @@ jobs:
         environment_name: "Hangman-env"
         region: "ap-northeast-1"
         version_label: "hangman-new-${{ steps.format-time.outputs.replaced }}"
-        deployment_package: Hangman/deploiyed_eb/deploy.zip
+        deployment_package: Hangman/deployed_eb/deploy.zip
 
     - name: Deployed!
       run: echo App deployed to ELB
