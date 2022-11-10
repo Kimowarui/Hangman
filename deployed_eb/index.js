@@ -15,6 +15,7 @@ app.get('/health', (req, res) => {
   res.send();
 })
 
+
 app.listen(port, () => {
   console.log('Hangman app is up and listening to port: ' + port);
 })
