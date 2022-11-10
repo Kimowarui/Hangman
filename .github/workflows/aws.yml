@@ -47,7 +47,7 @@ jobs:
         application_name: "hang"
         environment_name: "Hangman-env"
         region: "ap-northeast-1"
-        version_label: "react-demo-new-${{ steps.format-time.outputs.replaced }}"
+        version_label: "hangman-new-${{ steps.format-time.outputs.replaced }}"
         deployment_package: ./deploiyed_eb/deploy.zip
 
     - name: Deployed!
