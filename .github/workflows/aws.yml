@@ -21,6 +21,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+    - name: Check directory structure
+      run: ls -la
+      
     - name: Generate deployment package
       working-directory: ./deployed_eb
       run: 
