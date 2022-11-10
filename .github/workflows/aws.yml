@@ -21,18 +21,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Check directory structure
-      run: ls -la
-
     - name: Generate deployment package
       working-directory: ./deployed_eb
       run: 
         zip -r deploy.zip * -x "**node_modules**"
 
-    - name: Check if deploy.zp added
-      working-directory: ./deployed_eb
-      run: ls -la
-      
     - name: Get timestamp
       uses: gerred/actions/current-time@master
       id: current-time
@@ -55,7 +48,10 @@ jobs:
         environment_name: "Hangman-env"
         region: "ap-northeast-1"
         version_label: "hangman-new-${{ steps.format-time.outputs.replaced }}"
-        deployment_package: deploy.zip
+        deployment_package: deployed_eb/deploy.zip
+
+    - name: Check directory structure
+      run: ls -la deployed_eb
 
     - name: Deployed!
       run: echo App deployed to ELB
